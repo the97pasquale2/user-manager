@@ -24,7 +24,10 @@ class RoleRepositoryTest {
     void init() {
         final String[] rolesName = {"OWNER", "OPERATOR", "MAINTAINER", "DEVELOPER", "REPORTER"};
         for (String roleName : rolesName) {
-            Role role = roleRepository.save(Role.builder().name(roleName).build());
+            var role = roleRepository.findByName(roleName).orElse(null);
+            if(role == null) {
+                role = roleRepository.save(Role.builder().name(roleName).build());
+            }
             roleEntities.put(roleName, role);
         }
     }

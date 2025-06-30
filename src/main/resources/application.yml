@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: UserManager
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://idpgw.test4mind.com/realms/demo-interview
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/user_manager
+    username: postgres
+    password: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
