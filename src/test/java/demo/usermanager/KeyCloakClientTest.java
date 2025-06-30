@@ -1,19 +1,11 @@
 package demo.usermanager;
 
-import demo.usermanager.model.role.Role;
-import demo.usermanager.model.role.RoleRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
 import org.keycloak.representations.AccessTokenResponse;
-import org.keycloak.representations.idm.RealmRepresentation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -21,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class KeyCloakClientTest {
 
     @Test
-    void saveTwoIdenticalRoles() {
+    void gettingToken() {
         Keycloak keycloak = KeycloakBuilder.builder()
                 .serverUrl("https://idpgw.test4mind.com")
                 .realm("demo-interview")
