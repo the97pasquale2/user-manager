@@ -10,6 +10,7 @@ Un'API REST per la gestione degli utenti, che include funzionalità di creazione
     - [Avvio applicazione](#avvio-applicazione)
     - [Autenticazione](#Autenticazione)
 - [Endpoints](#endpoints)
+- [Struttura progetto](#struttura-progetto)
 
 ---
 
@@ -89,3 +90,27 @@ Authentication: Bearer [token]
   "roles": ["OWNER", "DEVELOPER"]
 }
 ```
+
+---
+
+### Struttura progetto
+
+La struttura del progetto segue un approccio **package by feature**, organizzando il codice in base alla funzionalità. Di seguito la disposizione dei package:
+
+- **`presentation`**: Contiene tutte le classi che si occupano di presentare la risorsa, ovvero:
+   - I **controller** per gestire le richieste HTTP.
+   - I **DTO** (Data Transfer Object) per il trasferimento dei dati.
+
+- **`business`**: Racchiude tutte le classi contenenti la **logica di business**, ovvero la logica specifica applicata ai dati o ai processi.
+
+- **`model`**: Include tutte le classi legate alla memorizzazione delle entità nel database, tra cui:
+   - Le classi **repository** per l'interazione con il database.
+   - Le **entità** che rappresentano i record del database.
+
+- **`aspect`**: Contiene tutti gli **aspetti** implementati tramite programmazione orientata agli aspetti (AOP - Aspect-Oriented Programming).
+
+- **`eventing`**: Raccoglie tutte le classi utilizzate per gestire gli **eventi**, come gli eventi stessi e i listener.
+
+- **`config`**: Include tutte le classi dedicate all'**inizializzazione** o alla configurazione del progetto.
+
+- **`auth`**: Contiene tutte le classi relative all'**autenticazione**
