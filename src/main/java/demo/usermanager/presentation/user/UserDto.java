@@ -1,8 +1,7 @@
 package demo.usermanager.presentation.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import demo.usermanager.auth.HideFor;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,8 +11,6 @@ import java.util.List;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDto {
-
-    //TODO Forse va spostato altrove?
     public enum Role {
         OWNER,
         OPERATOR,
@@ -31,6 +28,10 @@ public class UserDto {
     private String email;
     private String name;
     private String surname;
+
+    @HideFor(roles={"OPERATOR", "USER"})
     private String taxCode;
+
+    @HideFor(roles={"USER"})
     private List<Role> roles;
 }

@@ -1,11 +1,13 @@
 package demo.usermanager.business.user;
 
+import demo.usermanager.eventing.event.UserCreatedEvent;
 import demo.usermanager.model.role.RoleRepository;
 import demo.usermanager.model.user.User;
 import demo.usermanager.model.user.UserRepository;
 import demo.usermanager.presentation.common.ListDto;
 import demo.usermanager.presentation.user.UserDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,10 +19,13 @@ import java.util.Optional;
 public class UserCRUDService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final ApplicationEventPublisher publisher;
 
     public UserDto create(UserDto user) {
         User entity = mapToEntity(user);
         entity = userRepository.save(entity);
+
+        publisher.publishEvent(new UserCreatedEvent(entity));
         return mapToDto(entity);
     }
 
